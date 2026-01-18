@@ -354,3 +354,29 @@ input:focus, textarea:focus{
   .grid{ grid-template-columns: 1fr; }
   .artgrid{ grid-template-columns: 1fr; }
 }
+/* iPad + tablets */
+@media (max-width: 900px) {
+  .page__content { width: min(900px, 94vw); }
+  
+  /* make big text/buttons slightly smaller */
+  h1 { font-size: clamp(28px, 4vw, 40px); }
+  .hero-btn, .navlink { padding: 10px 14px; }
+}
+
+/* phones */
+@media (max-width: 600px) {
+  .page__content { width: 92vw; }
+
+  /* stack sections that were side-by-side */
+  .topnav { align-items: flex-start; }
+
+  /* make tap targets comfy */
+  .navlink { padding: 12px 14px; font-size: 16px; }
+
+  /* if your homepage has 3 buttons in a row, force them into a column */
+  .home-buttons {
+    display: grid;
+    gap: 14px;
+  }
+}
+
