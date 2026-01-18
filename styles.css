@@ -158,6 +158,20 @@ body{
 .navlink--accent{
   color: var(--blue);
 }
+/* Responsive nav layout */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.topnav__left,
+.topnav__right {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 /* Content sections */
 .section{
@@ -379,4 +393,5 @@ input:focus, textarea:focus{
     gap: 14px;
   }
 }
+
 
