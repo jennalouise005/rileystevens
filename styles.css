@@ -1,6 +1,23 @@
 /* ---- Fonts (optional but matches the mockup vibe) ---- */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap');
 
+/* === Responsive base (ALWAYS near top) === */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page__content {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+
 :root{
   --bg: #0b0b0d;
   --text: #f4f4f6;
@@ -393,5 +410,6 @@ input:focus, textarea:focus{
     gap: 14px;
   }
 }
+
 
 
