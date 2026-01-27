@@ -1,22 +1,4 @@
-/* ---- Fonts (optional but matches the mockup vibe) ---- */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap');
-
-/* === Responsive base (ALWAYS near top) === */
-* {
-  box-sizing: border-box;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.page__content {
-  width: min(1100px, 92vw);
-  margin: 0 auto;
-}
-
 
 :root{
   --bg: #0b0b0d;
@@ -39,14 +21,14 @@ body{
   font-family: "Playfair Display", serif;
 }
 
-/* Shared page wrapper */
+/* ===== Page wrapper ===== */
 .page{
   min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
 
-/* Background image layer (you can swap per-page) */
+/* Background image layer */
 .page--bg{
   background-size: cover;
   background-position: center;
@@ -56,53 +38,50 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  /* Darken overlay so text reads like your mockup */
   background: linear-gradient(
     90deg,
-    rgba(0,0,0,.78) 0%,
-    rgba(0,0,0,.64) 45%,
-    rgba(0,0,0,.20) 100%
+    rgba(0,0,0,.80) 0%,
+    rgba(0,0,0,.66) 45%,
+    rgba(0,0,0,.22) 100%
   );
   pointer-events:none;
 }
+
+/* Content uses flex so things don’t overlap on mobile */
 .page__content{
   position: relative;
-  min-height: 100vh;
-  padding: 40px 56px 74px;
+  min-height: calc(100vh - 34px); /* accounts for bluebar */
+  padding: clamp(18px, 3.5vw, 46px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* Top corner links like your homepage */
-.corner{
-  position:absolute;
-  top: 28px;
-  font-size: 20px;
-  letter-spacing: .2px;
+/* ===== Top row + bottom row (replaces absolute corner links) ===== */
+.toprow,
+.bottomrow{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap; /* key for mobile */
+}
+
+.linktext{
+  font-size: clamp(16px, 2.2vw, 20px);
   color: var(--text);
-  text-decoration: none;
+  text-decoration:none;
 }
-.corner:hover{ opacity:.85; }
-.corner--left{ left: 44px; }
-.corner--right{ right: 44px; }
+.linktext:hover{ opacity: .85; }
 
-/* Bottom corner links */
-.bottom{
-  position:absolute;
-  bottom: 64px; /* above blue bar */
-  font-size: 20px;
-  color: var(--text);
-  text-decoration: none;
-}
-.bottom:hover{ opacity:.85; }
-.bottom--left{ left: 44px; }
-.bottom--right{ right: 44px; }
+.linktext--accent{ color: var(--blue); }
 
-/* Thin horizontal line across page (mockup divider) */
+/* Divider line */
 .divider-line{
-  position:absolute;
-  left:0; right:0;
-  top: 62%;
   height: 1px;
+  width: 100%;
   background: var(--line);
+  margin-top: auto; /* pushes divider + bottomrow toward the bottom */
 }
 
 /* Blue bar footer */
@@ -121,21 +100,21 @@ body{
   color: rgba(0,0,0,.85);
 }
 
-/* Center title block (homepage style) */
+/* ===== Homepage hero ===== */
 .hero{
-  max-width: 860px;
-  margin-top: 140px;
+  max-width: 980px;
+  margin-top: clamp(28px, 6vw, 90px);
 }
 .hero__script{
   font-family: "Great Vibes", cursive;
-  font-size: 76px;
+  font-size: clamp(44px, 7vw, 76px);
   color: var(--blue);
   line-height: .9;
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
 }
 .hero__title{
-  font-size: 140px;
-  letter-spacing: 12px;
+  font-size: clamp(56px, 11vw, 140px);
+  letter-spacing: clamp(4px, 1.2vw, 12px);
   font-weight: 600;
   margin: 0;
 }
@@ -143,75 +122,57 @@ body{
   margin-top: 10px;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: clamp(12px, 2vw, 16px);
   letter-spacing: 2px;
   color: var(--muted);
 }
 
-/* Utility nav for inner pages (keeps same “text link” vibe) */
+/* ===== Inner-page topnav ===== */
 .topnav{
-  position:absolute;
-  top: 26px;
-  left: 44px;
-  right: 44px;
   display:flex;
   justify-content: space-between;
   align-items:center;
-  gap: 18px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 .topnav__left,
 .topnav__right{
   display:flex;
-  gap: 18px;
+  gap: 14px;
+  flex-wrap: wrap;
   align-items:center;
 }
 .navlink{
-  font-family: "Playfair Display", serif;
   font-size: 18px;
   color: var(--text);
   text-decoration: none;
 }
 .navlink:hover{ opacity:.85; }
-.navlink--accent{
-  color: var(--blue);
-}
-/* Responsive nav layout */
-.topnav {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
+.navlink--accent{ color: var(--blue); }
 
-.topnav__left,
-.topnav__right {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-/* Content sections */
+/* ===== Sections ===== */
 .section{
-  margin-top: 120px;
+  margin-top: clamp(26px, 6vw, 86px);
   max-width: 1100px;
 }
 .section__heading{
-  margin: 0 0 18px 0;
-  font-size: 46px;
+  margin: 0 0 14px 0;
+  font-size: clamp(34px, 5vw, 46px);
   letter-spacing: 2px;
 }
 .section__sub{
-  margin: 0 0 26px 0;
+  margin: 0 0 24px 0;
   font-family: "Montserrat", sans-serif;
   color: var(--muted);
   letter-spacing: 1px;
+  line-height: 1.6;
 }
 
-/* Cards / buttons (portfolio choices) */
+/* ===== Portfolio cards ===== */
 .grid{
   display:grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 18px;
 }
 .cardlink{
   display:block;
@@ -229,14 +190,12 @@ body{
   border-color: rgba(58,166,231,.55);
 }
 .cardlink__img{
-  height: 220px;
+  height: clamp(160px, 22vw, 240px);
   background: rgba(255,255,255,.06);
   background-size: cover;
   background-position: center;
 }
-.cardlink__body{
-  padding: 18px 18px 20px;
-}
+.cardlink__body{ padding: 18px; }
 .cardlink__kicker{
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
@@ -247,7 +206,7 @@ body{
 }
 .cardlink__title{
   margin:0;
-  font-size: 30px;
+  font-size: clamp(24px, 3.2vw, 30px);
   letter-spacing: 1px;
 }
 .cardlink__desc{
@@ -258,36 +217,36 @@ body{
   font-size: 14px;
 }
 
-/* Writing page */
+/* ===== Writing page ===== */
 .reading{
-  margin-top: 120px;
+  margin-top: clamp(26px, 6vw, 86px);
   max-width: 980px;
   border: 1px solid var(--cardBorder);
   background: rgba(0,0,0,.50);
   border-radius: 18px;
-  padding: 26px 26px;
+  padding: clamp(18px, 3vw, 28px);
   box-shadow: var(--shadow);
 }
 .reading h1{
   margin: 0 0 14px 0;
-  font-size: 44px;
+  font-size: clamp(32px, 4.6vw, 44px);
   letter-spacing: 2px;
 }
 .reading p{
   font-family:"Montserrat", sans-serif;
-  color: rgba(244,244,246,.82);
+  color: rgba(244,244,246,.86);
   line-height: 1.85;
-  font-size: 15px;
+  font-size: clamp(14px, 2.2vw, 15px);
   margin: 0 0 14px 0;
 }
 
-/* Art grid */
+/* ===== Art grid ===== */
 .artgrid{
-  margin-top: 120px;
+  margin-top: clamp(26px, 6vw, 86px);
   max-width: 1120px;
   display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 .artcard{
   border: 1px solid var(--cardBorder);
@@ -297,14 +256,12 @@ body{
   box-shadow: var(--shadow);
 }
 .artcard__img{
-  height: 220px;
+  height: clamp(180px, 20vw, 240px);
   background: rgba(255,255,255,.06);
   background-size: cover;
   background-position: center;
 }
-.artcard__body{
-  padding: 14px 14px 16px;
-}
+.artcard__body{ padding: 14px; }
 .artcard__title{
   margin: 0 0 6px 0;
   font-size: 20px;
@@ -318,19 +275,19 @@ body{
   line-height: 1.6;
 }
 
-/* Contact form */
+/* ===== Contact form ===== */
 .formwrap{
-  margin-top: 120px;
+  margin-top: clamp(26px, 6vw, 86px);
   max-width: 720px;
   border: 1px solid var(--cardBorder);
   background: rgba(0,0,0,.50);
   border-radius: 18px;
-  padding: 22px;
+  padding: clamp(18px, 3vw, 24px);
   box-shadow: var(--shadow);
 }
 .formwrap h1{
   margin: 0 0 10px 0;
-  font-size: 44px;
+  font-size: clamp(32px, 4.6vw, 44px);
   letter-spacing: 2px;
 }
 .formrow{
@@ -350,9 +307,10 @@ input, textarea{
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(244,244,246,.14);
   color: var(--text);
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 12px;
   outline: none;
+  width: 100%;
 }
 textarea{ min-height: 150px; resize: vertical; }
 input:focus, textarea:focus{
@@ -363,7 +321,6 @@ input:focus, textarea:focus{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap: 10px;
   padding: 12px 16px;
   border-radius: 999px;
   border: 1px solid rgba(58,166,231,.55);
@@ -376,40 +333,18 @@ input:focus, textarea:focus{
 }
 .btn:hover{ opacity:.92; }
 
-/* Responsive */
-@media (max-width: 900px){
-  .page__content{ padding: 34px 22px 74px; }
-  .corner--left, .corner--right, .bottom--left, .bottom--right{ left:22px; right:22px; }
-  .hero__title{ font-size: 84px; letter-spacing: 8px; }
-  .hero__script{ font-size: 58px; }
+/* ===== iPad/tablet tweaks ===== */
+@media (max-width: 1024px){
   .grid{ grid-template-columns: 1fr; }
+  .artgrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ===== Phone tweaks ===== */
+@media (max-width: 560px){
+  .hero{ text-align:center; }
+  .toprow, .bottomrow{ justify-content: center; }
+  .bottomrow{ gap: 10px; }
   .artgrid{ grid-template-columns: 1fr; }
+  .bluebar{ padding: 0 12px; }
 }
-/* iPad + tablets */
-@media (max-width: 900px) {
-  .page__content { width: min(900px, 94vw); }
-  
-  /* make big text/buttons slightly smaller */
-  h1 { font-size: clamp(28px, 4vw, 40px); }
-  .hero-btn, .navlink { padding: 10px 14px; }
-}
-
-/* phones */
-@media (max-width: 600px) {
-  .page__content { width: 92vw; }
-
-  /* stack sections that were side-by-side */
-  .topnav { align-items: flex-start; }
-
-  /* make tap targets comfy */
-  .navlink { padding: 12px 14px; font-size: 16px; }
-
-  /* if your homepage has 3 buttons in a row, force them into a column */
-  .home-buttons {
-    display: grid;
-    gap: 14px;
-  }
-}
-
-
 
